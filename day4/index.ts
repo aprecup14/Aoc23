@@ -21,10 +21,10 @@ const solve1 = (input: string) => {
 const solve2 = (input: string) => {
   const lines = input.split("\n");
   const scratchcardsOwned = Array.from({ length: lines.length }, () => 1);
-  const cardsProducedByCard = lines.map(l => {
+  const cardsProducedByCard = lines.map((l) => {
     const [winningNums, ownedNums] = getNums(l);
     return getWinningNumsCount(winningNums, ownedNums);
-  })
+  });
 
   cardsProducedByCard.forEach((val, idx) => {
     for (
