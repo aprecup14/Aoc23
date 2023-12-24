@@ -1,9 +1,13 @@
 Idea for part two:
+
 Num of cards created per card: [4, 2, 2, 1, 0, 0]
-Start with 1 card of each type.
+
 [C1,C2,C3,C4,C5,C6]
-[1 , 1, 1, 1, 1, 1]
+
+[1 , 1, 1, 1, 1, 1] (start with 1 card of each type)
+
 [1 , 2, 2, 2, 2, 1] -> after C1
+
 [1 , 2, 4, 4, 2, 1] -> after C2 (since we had 2C2's we get 2 additional C3 and C4)
 
 
