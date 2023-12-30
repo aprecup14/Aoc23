@@ -50,31 +50,40 @@ const solve2 = (input: string) => {
 
   const mapsFunctions = parseMaps(input);
 
-  return seedsRanges.reduce((min, [start, range]) => {
-    let rangeMin = Number.POSITIVE_INFINITY;
-    const interval = Interval(start, start + range - 1);
-    console.log(start);
-    for (const value of interval.generateValues()) {
-      const location = mapsFunctions.reduce((val, funcs) => {
-        const associatedFunc = funcs.find((f) => f.domain.isIncluded(val));
-        if (!associatedFunc) {
-          throw "Impossible";
-        }
-        return associatedFunc.map(val);
-      }, value);
-      if (location < rangeMin) {
-        rangeMin = location;
-      }
-    }
+  // return seedsRanges.reduce((min, [start, range]) => {
+  //   let rangeMin = Number.POSITIVE_INFINITY;
+  //   const interval = Interval(start, start + range - 1);
+  //   console.log(start);
+  //   for (const value of interval.generateValues()) {
+  //     const location = mapsFunctions.reduce((val, funcs) => {
+  //       const associatedFunc = funcs.find((f) => f.domain.isIncluded(val));
+  //       if (!associatedFunc) {
+  //         throw "Impossible";
+  //       }
+  //       return associatedFunc.map(val);
+  //     }, value);
+  //     if (location < rangeMin) {
+  //       rangeMin = location;
+  //     }
+  //   }
 
-    return rangeMin < min ? rangeMin : min;
-  }, Number.POSITIVE_INFINITY);
+  //   return rangeMin < min ? rangeMin : min;
+  // }, Number.POSITIVE_INFINITY);
+
+  let intervals = seedsRanges.map(([start, range]) => Interval(start, start + range - 1));
+  console.log(intervals)
+
+  console.log(mapsFunctions[0]);
+
+  intervals = intervals.flatMap(i => mapsFunctions[0].flatMap(f => i.getCommons(f.domain)))
+
+  return 1;
 };
 
 solveTest1(__dirname, solve1); // Part one - Test input 35
 solveTest2(__dirname, solve2); // Part two - Test input 46
 solveReal1(__dirname, solve1); // Part one - Real input 836040384
-solveReal2(__dirname, solve2);
+// solveReal2(__dirname, solve2);
 
 function parseMaps(input: string) {
   const [_, ...maps] = input.split("map:");
@@ -98,6 +107,9 @@ interface IInterval {
   stop: number;
   isIncluded(val: number): boolean;
   generateValues(): Iterable<number>;
+  getCommons(otherInterval: IInterval): IInterval[]
+  isIntervalIncluded(interval: IInterval): boolean;
+  hasOverlap(interval: IInterval): boolean;
 }
 
 interface IFunc {
@@ -116,8 +128,26 @@ function Interval(start: number, stop: number): IInterval {
     isIncluded(val) {
       return val >= start && val <= stop;
     },
+    isIntervalIncluded(interval) {
+      return interval.start >= this.start && interval.stop <= this.stop
+    },
+    hasOverlap(interval){
+      return this.stop >= interval.start
+    },
     *generateValues() {
       for (let i = start; i <= stop; i++) yield i;
+    },
+    getCommons(otherInterval) {
+      if (!this.hasOverlap(otherInterval)){
+        return [];
+      }
+      if (otherInterval.isIntervalIncluded(this)){
+        return [this];
+      }
+       
+        const common = Interval(this.start > otherInterval.start ? this.start : otherInterval.start, this.stop < otherInterval.stop ? this.stop: otherInterval.stop);
+
+        return [];
     },
   };
 }
