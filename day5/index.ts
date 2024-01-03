@@ -5,7 +5,7 @@ import {
   solveTest2,
 } from "../read_write/read";
 
-const solve1 = (input: string) => {
+export const solve1 = (input: string) => {
   const lines = input.split("\n");
 
   const seedsText = lines[0].split(":")[1].trim();
@@ -33,7 +33,7 @@ const solve1 = (input: string) => {
   return Math.min(...locations);
 };
 
-const solve2 = (input: string) => {
+export const solve2 = (input: string) => {
   const lines = input.split("\n");
 
   const seedsText = lines[0].split(":")[1].trim();
@@ -71,15 +71,14 @@ const solve2 = (input: string) => {
   // }, Number.POSITIVE_INFINITY);
 
   let intervals = seedsRanges.map(([start, range]) => Interval(start, start + range - 1));
-  console.log(intervals)
-
-  console.log(mapsFunctions[0]);
 
   intervals = intervals.flatMap(i => mapsFunctions[0].flatMap(f => i.getCommons(f.domain)))
 
   return 1;
 };
 
+export const expectedResultPart1 = 836040384;
+export const expectedResultPart2 = undefined;
 solveTest1(__dirname, solve1); // Part one - Test input 35
 solveTest2(__dirname, solve2); // Part two - Test input 46
 solveReal1(__dirname, solve1); // Part one - Real input 836040384

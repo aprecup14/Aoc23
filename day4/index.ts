@@ -5,7 +5,7 @@ import {
   solveTest2,
 } from "../read_write/read";
 
-const solve1 = (input: string) => {
+export const solve1 = (input: string) => {
   const lines = input.split("\n");
   return lines.reduce((sum, line) => {
     const [winningNums, ownedNums] = getNums(line);
@@ -18,7 +18,7 @@ const solve1 = (input: string) => {
   }, 0);
 };
 
-const solve2 = (input: string) => {
+export const solve2 = (input: string) => {
   const lines = input.split("\n");
   const scratchcardsOwned = Array.from({ length: lines.length }, () => 1);
   const cardsProducedByCard = lines.map((l) => {
@@ -38,6 +38,9 @@ const solve2 = (input: string) => {
 
   return scratchcardsOwned.reduce((sum, curr) => sum + curr, 0);
 };
+
+export const expectedResultPart1 = 18653;
+export const expectedResultPart2 = 5921508;
 
 solveTest1(__dirname, solve1); // Part one - Test input 13
 solveReal1(__dirname, solve1); // Part one - Real input 18653

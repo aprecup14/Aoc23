@@ -1,6 +1,7 @@
 import { solveReal2, solveTest2 } from "../read_write/read";
 
-const solve2 = (input: string) => {
+export const solve1 = (input: string) => -1;
+export const solve2 = (input: string) => {
   const lines = input.split("\n");
 
   return lines.reduce((sum, line, idx) => {
@@ -22,6 +23,8 @@ const solve2 = (input: string) => {
   }, 0);
 };
 
+export const expectedResultPart1 = undefined;
+export const expectedResultPart2 = 78826761;
 solveTest2(__dirname, solve2);
 solveReal2(__dirname, solve2);
 

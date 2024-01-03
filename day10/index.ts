@@ -98,7 +98,7 @@ const PipeSymbolToPipeMap: Map<PipeTypes, Pipe> = new Map([
   ["F", SEPipe],
 ]);
 
-function solve1(input: string) {
+export function solve1(input: string) {
   const [grid, startPosition] = parseInput(input);
   let distancesGrid: number[][] = grid.map((row, rIdx) =>
     row.map((_, tIdx) =>
@@ -147,7 +147,7 @@ function solve1(input: string) {
 // Other solution idea: https://www.reddit.com/r/adventofcode/comments/18evyu9/comment/kcqmhwk/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 // If we consider the closed loop as an integral polygon then Pick's theorem relates the area of the closed loop (which can be calculated using the shoelace formula), the number of integer points on the boundary of the closed loop (which is just the length of the close loop), and the number of integer points in the interior of the loop (which is the answer).
 // Implemented: Count the number of vertical pipes for each line to decide whether the tile is inside or outside of the loop.
-function solve2(input: string) {
+export function solve2(input: string) {
   const [grid, startPosition] = parseInput(input);
   let distancesGrid: number[][] = grid.map((row, rIdx) =>
     row.map((_, tIdx) =>
@@ -322,6 +322,9 @@ function parseInput(
     return pipeType;
   }
 }
+
+export const expectedResultPart1 = 6927;
+export const expectedResultPart2 = 467;
 
 // Part one - Real input 6927
 // Part two - Real input 467

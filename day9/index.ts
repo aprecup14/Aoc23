@@ -5,7 +5,7 @@ import {
   solveTest2,
 } from "../read_write/read";
 
-const solve1 = (input: string) => {
+export const solve1 = (input: string) => {
   const lines = getLines(input);
 
   return lines.reduce((extrapolatedValsSum, valueEvolution) => {
@@ -24,7 +24,7 @@ const solve1 = (input: string) => {
   }, 0);
 };
 
-const solve2 = (input: string) => {
+export const solve2 = (input: string) => {
   const lines = getLines(input);
 
   return lines.reduce((extrapolatedValsSum, valueEvolution) => {
@@ -55,6 +55,9 @@ function getLines(input: string): number[][] {
     .split("\r\n")
     .map((list) => list.split(" ").map((num) => parseInt(num)));
 }
+
+export const expectedResultPart1 = 1993300041;
+export const expectedResultPart2 = 1038;
 
 // Part one - Test input 114
 // Part one - Real input 1993300041

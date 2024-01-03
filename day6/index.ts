@@ -5,7 +5,7 @@ import {
   solveTest2,
 } from "../read_write/read";
 
-const solve1 = (input: string) => {
+export const solve1 = (input: string) => {
   const [timeLine, distanceLine] = input.split("\n");
   const times = timeLine
     .split(":")[1]
@@ -31,7 +31,7 @@ const solve1 = (input: string) => {
   }, 0);
 };
 
-const solve2 = (input: string) => {
+export const solve2 = (input: string) => {
   const [timeLine, distanceLine] = input.split("\n");
   const times = timeLine
     .split(":")[1]
@@ -97,6 +97,9 @@ function Race(time: number, record: number): Race {
     },
   };
 }
+
+export const expectedResultPart1 = 4568778;
+export const expectedResultPart2 = 28973936;
 
 solveTest1(__dirname, solve1); // Part one - Test input 288
 solveReal1(__dirname, solve1); // Part one - Real input 4568778

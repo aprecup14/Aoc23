@@ -5,7 +5,7 @@ import {
   solveTest2,
 } from "../read_write/read";
 
-const solve1 = (input: string) => {
+export const solve1 = (input: string) => {
   const startNode = "AAA";
   const stopNode = "ZZZ";
 
@@ -37,7 +37,7 @@ const solve1 = (input: string) => {
   return step;
 };
 
-const solve2 = (input: string) => {
+export const solve2 = (input: string) => {
   const instructions = input.split("\r\n")[0];
 
   const { adjacentMapList, startNodes } = input
@@ -95,6 +95,8 @@ const solve2 = (input: string) => {
   return lcmAll(zAt);
 };
 
+export const expectedResultPart1 = 21797;
+export const expectedResultPart2 = 23977527174353;
 // Part one - Test input 2
 // Part one - Real input 21797
 // Part two - Test input 6

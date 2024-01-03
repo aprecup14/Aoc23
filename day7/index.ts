@@ -88,7 +88,7 @@ function getEmptyHandsMap(): Map<HandTypes, Hand[]> {
   ]);
 }
 
-const solve1 = (input: string) => {
+export const solve1 = (input: string) => {
   const lines = input
     .split("\r\n")
     .map((l) => l.split(" ").map((el) => el.trim()));
@@ -120,7 +120,7 @@ const solve1 = (input: string) => {
   }, 0);
 };
 
-const solve2 = (input: string) => {
+export const solve2 = (input: string) => {
   const lines = input
     .split("\r\n")
     .map((l) => l.split(" ").map((el) => el.trim()));
@@ -317,6 +317,9 @@ function HighCardIdentifier(wildcard?: CardTypes): HandTypeIdentifier {
     identifier: "HighCard",
   };
 }
+
+export const expectedResultPart1 = 249748283;
+export const expectedResultPart2 = 248029057;
 
 solveTest1(__dirname, solve1);
 solveReal1(__dirname, solve1);
