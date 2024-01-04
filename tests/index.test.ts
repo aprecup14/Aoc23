@@ -2,7 +2,7 @@ import path from "path";
 import { readFile } from "fs/promises";
 
 const pathToIndexFiles = Array.from(
-  { length: 8 },
+  { length: 9 },
   (_, idx) => `day${idx + 3}`
 ).map((name) => path.join(__dirname, "..", name, "index.ts"));
 
