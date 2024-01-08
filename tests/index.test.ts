@@ -1,10 +1,16 @@
 import path from "path";
 import { readFile } from "fs/promises";
 
+function toRelativePath(name: `day${number}`) {
+  return path.join(__dirname, "..", name, "index.ts");
+}
+
 const pathToIndexFiles = Array.from(
   { length: 9 },
-  (_, idx) => `day${idx + 3}`
-).map((name) => path.join(__dirname, "..", name, "index.ts"));
+  (_, idx) => `day${idx + 3}` as const
+)
+  .map(toRelativePath)
+  .concat(toRelativePath("day13"));
 
 describe.each(pathToIndexFiles)("Tests for %s", (filePath) => {
   let module: any = undefined;
@@ -16,7 +22,7 @@ describe.each(pathToIndexFiles)("Tests for %s", (filePath) => {
   afterAll(() => {
     module = undefined;
   });
-  
+
   it("Exports solve1 and solve2", () => {
     const { solve1, solve2 } = module;
     expect(solve1).not.toBeUndefined();
