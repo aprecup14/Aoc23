@@ -10,7 +10,11 @@ const pathToIndexFiles = Array.from(
   (_, idx) => `day${idx + 3}` as const
 )
   .map(toRelativePath)
-  .concat(toRelativePath("day13"), toRelativePath("day14"));
+  .concat(
+    toRelativePath("day13"),
+    toRelativePath("day14"),
+    toRelativePath("day15")
+  );
 
 describe.each(pathToIndexFiles)("Tests for %s", (filePath) => {
   let module: any = undefined;
