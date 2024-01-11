@@ -13,7 +13,8 @@ const pathToIndexFiles = Array.from(
   .concat(
     toRelativePath("day13"),
     toRelativePath("day14"),
-    toRelativePath("day15")
+    toRelativePath("day15"),
+    toRelativePath("day16")
   );
 
 describe.each(pathToIndexFiles)("Tests for %s", (filePath) => {
